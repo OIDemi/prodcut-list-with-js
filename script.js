@@ -10,11 +10,15 @@ fetch("./data.json")
       productElement.setAttribute("class", "products-wrapper");
 
       productElement.innerHTML = `
+      <picture>
+      <source srcset='${product.image.mobile}' media='(max-width: 768px)'>
+      <source srcset='${product.image.tablet}' media='(max-width: 1024px)'>
         <img src='${product.image.desktop}' alt = '${product.name}' class='product-img'>
+      </picture>
         <div class='product-content'>
         <p class='product-category'>${product.category}</p>
         <p class='product-name'>${product.name}</p>
-        <p class='product-price'>${product.price}</p>
+        <p class='product-price'>$${product.price}</p>
         </div>
         `;
       dessertsCatalog.insertAdjacentElement("afterbegin", productElement);

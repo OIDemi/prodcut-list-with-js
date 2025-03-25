@@ -36,7 +36,6 @@ img {
 .main-grid-container {
   width: min(90%, 1400px);
   margin-inline: auto;
-  border: 1px solid red;
   display: grid;
   padding: 0 0.8rem;
 }
@@ -56,10 +55,24 @@ img {
 /**PRODCUT CLASS NAMES ARE FROM JS*/
 .product-img {
   border-radius: 0.5rem;
+  object-fit: cover;
   width: 100%;
 }
 .product-content {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.product-category {
+  color: var(--clr-rose-400);
+}
+.product-name {
+  color: var(--clr-rose-900);
+  font-weight: var(--font-weight-700);
+}
+.product-price {
+  color: var(--clr-red);
 }
 .carts-body {
   background-color: var(--clr-white);
