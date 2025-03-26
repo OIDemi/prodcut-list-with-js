@@ -23,8 +23,8 @@ function fetchProducts(data) {
     <source srcset='${product.image.mobile}' media='(max-width: 768px)' class='product-img'>
     <source srcset='${product.image.tablet}' media='(max-width: 1024px)' class='product-img'>
       <img src='${product.image.desktop}' alt = '${product.name}' class='product-img'>
+      <button class='product-btn'><img src='./assets/images/icon-add-to-cart.svg' alt='add-to-cart'>Add to Cart</button>
     </picture>
-    <button class='product-btn'>Add to Cart</button>
       <div class='product-content'>
       <p class='product-category'>${product.category}</p>
       <p class='product-name'>${product.name}</p>
@@ -41,8 +41,11 @@ function addToCart(data) {
   addToCartBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
       const parentElement = btn.parentElement;
+      console.log(parentElement);
       const productName =
-        parentElement.querySelector(".product-name").textContent;
+        parentElement.nextElementSibling.querySelector(
+          ".product-name"
+        ).textContent;
 
       const isInCart = cartList.find((item) => item.name === productName);
 
@@ -59,6 +62,7 @@ function addToCart(data) {
         console.log(cartList);
       }
       updateCartUI(cartList);
+      removeCartItem(cartList);
     });
   });
 }
@@ -69,21 +73,55 @@ function updateCartUI(cart) {
     cartCatalog.innerHTML = "";
     cart.forEach((item) => {
       const amount = item.price * item.quantity;
-      const itemElement = document.createElement("section");
-      itemElement.setAttribute("class", "cart-list");
-      itemElement.innerHTML = `
+      const cartElement = document.createElement("section");
+      cartElement.setAttribute("class", "cart-list");
+      cartElement.innerHTML = `
         <div>
-        <p>${item.name}</p>
+        <p class='item-name'>${item.name}</p>
         <div class='cart-items-info'>
           <p class='quantity'>${item.quantity}x</p>
           <p class='price'>@${item.price}</p>
           <p class='amount'>${amount}</p>
         </div>
         </div>
-        <img src='./assets/images/icon-remove-item.svg'>
+        <img src='./assets/images/icon-remove-item.svg' class='remove-btn'>
       `;
 
-      cartCatalog.insertAdjacentElement("afterbegin", itemElement);
+      cartCatalog.insertAdjacentElement("afterbegin", cartElement);
     });
+
+    const totalOrder = document.createElement("section");
+    const totalAmount = cart.reduce(
+      (acc, curr) => acc + curr.price * curr.quantity,
+      0
+    );
+    totalOrder.setAttribute("class", "total-order-section");
+    totalOrder.innerHTML = `
+    <div class='total-order'>
+    <p>Order total</p>
+    <p>$${totalAmount}</p>
+    </div>
+    <div class='carbon-neutral-section'>
+    <img src='./assets/images/icon-carbon-neutral.svg' alt='carbon-neutral'>
+    <p>This is a <span>carbon-neutral</span> delivery</p>
+    </div>
+    <button>Confirm Order</button>
+    `;
+    cartCatalog.insertAdjacentElement("beforeend", totalOrder);
   }
+}
+
+function removeCartItem(cart) {
+  const removeBtn = document.querySelectorAll(".remove-btn");
+  removeBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const itemName =
+        btn.parentElement.querySelector(".item-name").textContent;
+      const findItem = cart.findIndex((item) => item.name === itemName);
+      cart.splice(findItem, 1);
+      console.log(findItem);
+      updateCartUI(cartList);
+      removeCartItem(cartList);
+    });
+  });
 }

@@ -61,16 +61,14 @@ img {
 }
 
 /**PRODCUT CLASS NAMES ARE FROM JS*/
-.products-wrapper {
+.img-wrapper {
   position: relative;
 }
 .product-img {
   border-radius: 0.5rem;
   width: 100%;
 }
-.img-outline {
-  outline: 10px solid red;
-}
+
 .product-content {
   margin-top: 1.5rem;
   display: flex;
@@ -89,8 +87,19 @@ img {
 }
 .product-btn {
   position: absolute;
-  bottom: 25%;
-  right: 50%;
+  left: 50%;
+  bottom: -8%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  border: none;
+  padding: 0.8rem 2.5rem;
+  background-color: var(--clr-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  outline: 1px solid var(--clr-red);
+  border-radius: 20px;
 }
 
 /*SECOND GRID*/
@@ -116,11 +125,14 @@ img {
   color: var(--clr-rose-400);
 }
 
+/** CLASS NAMES ARE FROM JS*/
 .cart-list {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
+  border-bottom: 1px solid var(--clr-rose-100);
+  padding: 0.8rem 0;
 }
 
 .cart-items-info {
@@ -139,6 +151,49 @@ img {
 .amount {
   color: var(--clr-rose-500);
   font-weight: var(--font-weight-700);
+}
+.remove-btn {
+  cursor: pointer;
+}
+.total-order-section {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.total-order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-order p:last-child {
+  color: var(--clr-rose-900);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-600);
+}
+.carbon-neutral-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--clr-rose-50);
+  padding: 0.8rem 0;
+  border-radius: 10px;
+}
+.carbon-neutral-section span {
+  color: var(--clr-rose-900);
+  font-weight: var(--font-weight-600);
+}
+.total-order-section button {
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  background-color: var(--clr-red);
+  color: var(--clr-white);
+  padding: 1rem 0;
+  border-radius: 25px;
 }
 @media (min-width: 750px) {
   .main-grid-container {
