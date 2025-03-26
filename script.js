@@ -62,7 +62,6 @@ function addToCart(data) {
         console.log(cartList);
       }
       updateCartUI(cartList);
-      removeCartItem(cartList);
     });
   });
 }
@@ -109,6 +108,7 @@ function updateCartUI(cart) {
     `;
     cartCatalog.insertAdjacentElement("beforeend", totalOrder);
   }
+  removeCartItem(cartList);
 }
 
 function removeCartItem(cart) {
@@ -119,9 +119,22 @@ function removeCartItem(cart) {
         btn.parentElement.querySelector(".item-name").textContent;
       const findItem = cart.findIndex((item) => item.name === itemName);
       cart.splice(findItem, 1);
-      console.log(findItem);
+
+      if (cart.length === 0) {
+        amountOfItemsInCart.textContent = 0;
+        cartCatalog.innerHTML = "";
+        const emptyContent = document.createElement("div");
+        emptyContent.setAttribute("class", "empty-cart-content");
+        emptyContent.innerHTML = `
+        <img
+                src="./assets/images/illustration-empty-cart.svg"
+                alt="empty-cart"
+              />
+              <p>Your added items will appear here</p>
+        `;
+        cartCatalog.insertAdjacentElement("afterbegin", emptyContent);
+      }
       updateCartUI(cartList);
-      removeCartItem(cartList);
     });
   });
 }

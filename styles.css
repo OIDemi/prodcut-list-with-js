@@ -90,9 +90,9 @@ img {
   left: 50%;
   bottom: -8%;
   transform: translateX(-50%);
-  white-space: nowrap;
   border: none;
-  padding: 0.8rem 2.5rem;
+  width: 60%;
+  padding: 0.5rem 0;
   background-color: var(--clr-white);
   display: flex;
   justify-content: center;
@@ -199,6 +199,12 @@ img {
   .main-grid-container {
     grid-template-columns: 2fr 1fr;
   }
+  .desserts-product-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
   .desserts-product-container {
     grid-template-columns: repeat(3, 1fr);
   }
