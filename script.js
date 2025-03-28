@@ -42,7 +42,7 @@ function addToCart(data) {
 
   addToCartBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const parentElement = btn.parentElement;
+      const parentElement = btn.parentElement.parentElement;
       console.log(parentElement);
       const productName =
         parentElement.nextElementSibling.querySelector(
@@ -61,7 +61,6 @@ function addToCart(data) {
       } else {
         const addNewProduct = data.find((item) => item.name === productName);
         cartList.push({ ...addNewProduct, quantity: 1 });
-        console.log(cartList);
       }
       updateCartUI(cartList);
     });
