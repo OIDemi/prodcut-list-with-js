@@ -19,12 +19,14 @@ function fetchProducts(data) {
     productElement.setAttribute("class", "products-wrapper");
 
     productElement.innerHTML = `
-    <picture class='img-wrapper'>
+    <div class='img-wrapper'>
+    <picture >
     <source srcset='${product.image.mobile}' media='(max-width: 768px)' class='product-img'>
     <source srcset='${product.image.tablet}' media='(max-width: 1024px)' class='product-img'>
       <img src='${product.image.desktop}' alt = '${product.name}' class='product-img'>
       <button class='product-btn'><img src='./assets/images/icon-add-to-cart.svg' alt='add-to-cart'>Add to Cart</button>
     </picture>
+    </div>
       <div class='product-content'>
       <p class='product-category'>${product.category}</p>
       <p class='product-name'>${product.name}</p>
