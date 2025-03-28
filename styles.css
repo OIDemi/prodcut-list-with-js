@@ -15,7 +15,13 @@
   --font-weight-600: 600;
   --font-weight-700: 700;
 }
-
+.attribution {
+  font-size: 18px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
 * {
   margin: 0;
   padding: 0;
